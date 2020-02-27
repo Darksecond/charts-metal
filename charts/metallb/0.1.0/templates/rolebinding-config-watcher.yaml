@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: metallb
+  name: {{ template "metallb.fullname" . }}-config-watcher
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "metallb.fullname" . }}-config-watcher
+subjects:
+- kind: ServiceAccount
+  name: {{ template "metallb.fullname" . }}-controller
+- kind: ServiceAccount
+  name: {{ template "metallb.fullname" . }}-speaker
