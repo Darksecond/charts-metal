@@ -1,7 +1,7 @@
 apiVersion: v2
 name: metallb
 home: https://metallb.universe.tf
-icon: https://raw.githubusercontent.com/metallb/metallb/main/website/static/images/logo/metallb-blue.svg
+icon: https://raw.githubusercontent.com/metallb/metallb/main/website/static/images/logo/metallb-blue.png
 description: MetalLB is a load-balancer implementation for bare metal Kubernetes clusters
 type: application
 version: 0.2.0
