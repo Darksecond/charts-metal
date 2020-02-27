@@ -1,0 +1,14 @@
+questions:
+- variable: config.create
+  default: true
+  type: boolean
+  description: "Create MetalLB Configuration"
+  label: Create Config
+  show_subquestion_if: true
+  group: Configuration
+  subquestions:
+  - variable: config.addresses
+    default: "192.168.1.240-192.168.1.250"
+    description: Layer2 address range to use for LoadBalancer services.
+    label: Address Range
+    type: string
