@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: metallb
-    component: controller
+    {{- include "metallb.labels" . | nindent 4 }}
+    app.kubernetes.io/component: controller
   name: {{ template "metallb.fullname" . }}-controller
 spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: metallb
-      component: controller
+      {{- include "metallb.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: controller
   template:
     metadata:
       annotations:
         prometheus.io/port: '7472'
         prometheus.io/scrape: 'true'
       labels:
-        app: metallb
-        component: controller
+        {{- include "metallb.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: controller
     spec:
       containers:
       - args:
@@ -41,7 +41,7 @@ spec:
             - all
           readOnlyRootFilesystem: true
       nodeSelector:
-        beta.kubernetes.io/os: linux
+        kubernetes.io/os: linux
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534

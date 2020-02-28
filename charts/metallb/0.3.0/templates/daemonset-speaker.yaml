@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: metallb
-    component: speaker
+    {{- include "metallb.labels" . | nindent 4 }}
+    app.kubernetes.io/component: speaker
   name: {{ template "metallb.fullname" . }}-speaker
 spec:
   selector:
     matchLabels:
-      app: metallb
-      component: speaker
+      {{- include "metallb.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: speaker
   template:
     metadata:
       annotations:
         prometheus.io/port: '7472'
         prometheus.io/scrape: 'true'
       labels:
-        app: metallb
-        component: speaker
+        {{- include "metallb.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: speaker
     spec:
       containers:
       - args:
@@ -54,7 +54,7 @@ spec:
           readOnlyRootFilesystem: true
       hostNetwork: true
       nodeSelector:
-        beta.kubernetes.io/os: linux
+        kubernetes.io/os: linux
       serviceAccountName: {{ template "metallb.fullname" . }}-speaker
       terminationGracePeriodSeconds: 0
       tolerations:
