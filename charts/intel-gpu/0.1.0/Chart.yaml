@@ -1,0 +1,8 @@
+apiVersion: v2
+name: intel-gpu
+description: The GPU device plugin supports Intel GVT-d device passthrough and acceleration using GPUs
+type: application
+version: 0.1.0
+appVersion: 0.17.0
+icon: file://../logo.png
+home: https://github.com/intel/intel-device-plugins-for-kubernetes/tree/master/cmd/gpu_plugin
